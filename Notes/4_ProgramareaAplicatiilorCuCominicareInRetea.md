@@ -168,3 +168,146 @@ print(f"Received {data!r}")
 - Presupune operații blocante, dar serverul nu trebuie să termine comunicare cu un client înainte de a trece la următorul client.
 
 - Nu necesită structuri de execuție separate.
+
+#### Demo comunicare UDP: Client - Server
+
+1. Server UDP
+
+```java
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class UDPServer {
+    public static void main(String[] args) {
+        final int PORT = 3333;
+        byte[] buffer = new byte[1024];
+
+        try (DatagramSocket serverSocket = new DatagramSocket(PORT)) {
+            System.out.println("UDP Server is running on port " + PORT);
+
+            while (true) {
+                DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
+                serverSocket.receive(receivePacket);
+
+                String message = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                String upperMessage = message.toUpperCase();
+
+                byte[] sendBuffer = upperMessage.getBytes();
+                InetAddress clientAddress = receivePacket.getAddress();
+                int clientPort = receivePacket.getPort();
+
+                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, clientAddress, clientPort);
+                serverSocket.send(sendPacket);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+2. Client UDP
+
+```java
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.Scanner;
+
+public class UDPClient {
+    public static void main(String[] args) {
+        final String HOST = "127.0.0.1";
+        final int PORT = 3333;
+        byte[] buffer = new byte[1024];
+
+        try (DatagramSocket clientSocket = new DatagramSocket();
+             Scanner scanner = new Scanner(System.in)) {
+
+            InetAddress serverAddress = InetAddress.getByName(HOST);
+
+            while (true) {
+                System.out.print("Please enter the message:\n");
+                String data = scanner.nextLine();
+
+                byte[] sendBuffer = data.getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, serverAddress, PORT);
+                clientSocket.send(sendPacket);
+
+                DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
+                clientSocket.receive(receivePacket);
+
+                String receivedMessage = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                System.out.println("Server response: " + receivedMessage);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## Problemele comune ale serverelor UDP
+
+Serverele UDP se confruntă cu probleme specifice din cauza naturii nesigure și fără conexiune a protocolului UDP.
+
+### Probleme principale
+
+- **Menținerea unei comunicații multi-cerere cu un anumit client**  
+  UDP nu ține evidența conexiunilor. Serverul trebuie să gestioneze manual ce cereri aparțin fiecărui client, folosind adresa IP și portul de origine.
+
+- **Confirmarea primirii comenzilor**  
+  UDP nu garantează livrarea pachetelor. Dacă serverul așteaptă comenzi importante de la client, trebuie implementat un mecanism propriu de confirmare (de exemplu, clientul trimite un ACK - acknowledgment).
+
+- **Comunicare bidirecțională**  
+  Chiar dacă UDP permite trimiterea și recepționarea de date, serverul trebuie să gestioneze manual cine trimite și cine primește, pentru că nu există o conexiune stabilă ca la TCP.
+
+---
+
+> **Pe scurt:**  
+> Serverele UDP trebuie să implementeze manual logica pentru **urmărirea clienților**, **confirmarea livrării** și **gestionarea schimbului de date în ambele direcții**, pentru că UDP nu oferă aceste funcționalități în mod automat.
+
+## Programarea sub nivelul transport
+
+- Trimiterea de pachete IP construite în interiorul aplicației.
+
+### Raw Socket
+
+Un **Raw Socket** îți permite să trimiți pachete de rețea **direct la nivel IP**, fără ca sistemul de operare să adauge automat anteturi TCP sau UDP.
+
+- Creezi **manual** structura pachetului (IP Header, eventual Data).
+
+- Sistemul de operare nu mai construiește pentru tine pachetul de transport.
+
+- Ai **control complet** asupra modului în care arată pachetul trimis.
+
+#### Use case-uri
+
+- Testare de protocoale.
+
+- Analiză de rețea și sniffing.
+
+- Simulare de atacuri sau vulnerabilități (ex: crearea manuală de pachete malformate).
+
+### Crearea de pachete cu Scapy
+
+**Scapy este o bibliotecă Python** care te ajută să construiești și să trimiți pachete de rețea fără să scrii manual fiecare byte.
+
+- Exemple:
+  - Creare de pachete la nivel 2 (Ethernet) sau nivel 3 (IP):
+  - Nivel 2: comunicație directă prin adrese MAC (LAN).
+  - Nivel 3: comunicație prin adrese IP (WAN, Internet).
+  - Utilizarea protocoalelor preexistente:
+  - Scapy știe cum să creeze pachete IP, TCP, UDP, ICMP, ARP etc.
+  - Poți construi rapid o structură corectă de pachet fără să scrii fiecare câmp manual.
+  - Crearea de pachete personalizate:
+  - Dacă este cazul, putem să definim complet manual conținutul pachetelor.
+
+## Sumar - UDP vs TCP/IP
+
+| UDP   |   TCP/IP  |
+| Nu este orientat pe conexiune - fiecare mesaj este trimis individual  | Este orientat pe conexiune - necesită stabilirea unei conexiuni   |
+| Nu garantează livrarea pachetelor | Garantează livrarea și ordinea pachetelor |
+| Este mai rapid decât TCP pentru că nu are mecanisme de validare | Este mai lent decât UDP pentru că are mecanisme de validare |
+| Util pentru aplicații în timp real | Folosit pentru aplicații critice, unde integritatea este importantă |
