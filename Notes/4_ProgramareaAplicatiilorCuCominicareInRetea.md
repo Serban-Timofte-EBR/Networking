@@ -307,6 +307,7 @@ Un **Raw Socket** îți permite să trimiți pachete de rețea **direct la nivel
 ## Sumar - UDP vs TCP/IP
 
 | UDP   |   TCP/IP  |
+| ----- | --------- |
 | Nu este orientat pe conexiune - fiecare mesaj este trimis individual  | Este orientat pe conexiune - necesită stabilirea unei conexiuni   |
 | Nu garantează livrarea pachetelor | Garantează livrarea și ordinea pachetelor |
 | Este mai rapid decât TCP pentru că nu are mecanisme de validare | Este mai lent decât UDP pentru că are mecanisme de validare |
