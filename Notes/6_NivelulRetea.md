@@ -1,6 +1,6 @@
-## Nivelul Rețea
+# Nivelul Rețea
 
-### Funcțiile nivelului rețea
+## Funcțiile nivelului rețea
 
 Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
@@ -12,7 +12,7 @@ Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
 ---
 
-### Tipuri de protocoale de nivel rețea
+## Tipuri de protocoale de nivel rețea
 
 1. **Protocoale rutabile**  
    Acestea sunt protocoalele care transportă efectiv datele. Exemple:
@@ -27,7 +27,7 @@ Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
 ---
 
-### Protocolul IP
+## Protocolul IP
 
 - Este **protocolul esențial al Internetului**.
 - Asigură **adresarea globală** a dispozitivelor și **rutarea pachetelor** între rețele.
@@ -36,7 +36,7 @@ Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
 ---
 
-### Versiuni ale protocolului IP
+## Versiuni ale protocolului IP
 
 - **IPv4**:  
   - A fost versiunea inițială și este încă cea mai utilizată.  
@@ -51,7 +51,7 @@ Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
 ---
 
-### Comparație IPv4 vs IPv6
+## Comparație IPv4 vs IPv6
 
 | Caracteristică           | IPv4                       | IPv6                               |
 |--------------------------|----------------------------|-------------------------------------|
@@ -63,11 +63,11 @@ Nivelul rețea din modelul TCP/IP este responsabil pentru:
 
 ---
 
-### Formatele Pachetelor IPv4 și IPv6
+## Formatele Pachetelor IPv4 și IPv6
 
 ---
 
-#### Formatul pachetului IPv4
+## Formatul pachetului IPv4
 
 Pachetul IPv4 conține un header detaliat, care oferă multiple informații necesare pentru livrarea corectă a datelor:
 
@@ -92,7 +92,7 @@ Pachetul IPv4 conține un header detaliat, care oferă multiple informații nece
 
 Dimensiunea maximă a unui pachet IPv4 este de 65.535 bytes.
 
-#### Formatul pachetului IPv6
+## Formatul pachetului IPv6
 
 IPv6 aduce un format de header simplificat și mai eficient față de IPv4. Are dimensiune fixă de 40 bytes și elimină câmpuri considerate inutile:
 
@@ -107,7 +107,7 @@ IPv6 aduce un format de header simplificat și mai eficient față de IPv4. Are 
 
 IPv6 nu conține checksum în header și folosește extensii separate pentru fragmentare, ceea ce simplifică prelucrarea pachetelor de către routere.
 
-#### Comparativ IPv4 vs IPv6
+## Comparativ IPv4 vs IPv6
 
 | Caracteristică     | IPv4                | IPv6                     |
 |--------------------|---------------------|--------------------------|
@@ -120,13 +120,13 @@ IPv6 nu conține checksum în header și folosește extensii separate pentru fra
 
 IPv6 a fost proiectat pentru a rezolva limitările IPv4, oferind mai multe adrese disponibile, securitate îmbunătățită și performanță mai mare în procesare.
 
-### Masca de rețea (Subnet Mask)
+## Masca de rețea (Subnet Mask)
 
 Masca de rețea este un concept fundamental în definirea rețelelor IP. Ea determină ce parte dintr-o adresă IP reprezintă rețeaua și ce parte reprezintă hostul (dispozitivul).
 
 ---
 
-#### Cum funcționează?
+## Cum funcționează?
 
 Masca de rețea este un număr binar de 32 de biți (în IPv4) care se aplică printr-o operație binară AND peste o adresă IP.
 
@@ -138,7 +138,7 @@ Scopul este de a separa adresa IP în două componente:
 
 ---
 
-#### Exemplu de calcul
+## Exemplu de calcul
 
 Să presupunem o adresă IP și o mască:
 
@@ -162,14 +162,14 @@ REȚEA (AND)      = 11000000.10101000.00000001.00000000
 
 ---
 
-#### Notații importante
+## Notații importante
 
 - Masca definește dimensiunea rețelei și câți hosturi sunt posibile.
 - Este strâns legată de conceptul de CIDR (Classless Inter-Domain Routing), unde masca e reprezentată ca /n, de ex: 192.168.1.0/24.
 
 ---
 
-#### Exemple de măști frecvente
+## Exemple de măști frecvente
 
 | Masca zecimală | Scurtătură CIDR | Nr. hosturi posibili |
 |----------------|-----------------|----------------------|
@@ -180,11 +180,11 @@ REȚEA (AND)      = 11000000.10101000.00000001.00000000
 
 Notă: numărul maxim de hosturi = 2^(număr biți de host) - 2 (se scad rețeaua și broadcast-ul)
 
-#### Concluzie
+## Concluzie
 
 Masca de rețea este cheia pentru a înțelege structura internă a unei rețele IP. Aplicarea unei măști printr-un AND binar cu adresa IP îți arată la ce rețea aparține un host. Aceasta este baza oricărui mecanism de rutare, segmentare de rețele, și planificare IP.
 
-### Clasele de adrese IP
+## Clasele de adrese IP
 
 Adresele IP pot fi clasificate în mai multe clase, în funcție de valoarea primului octet, ceea ce determină masca de rețea și dimensiunea rețelei.
 
@@ -202,7 +202,7 @@ Adresele IP pot fi clasificate în mai multe clase, în funcție de valoarea pri
 
 ---
 
-### Tipuri de transmisie IPv4
+## Tipuri de transmisie IPv4
 
 - **Unicast** – Transmiterea unui pachet de la un singur emitent către un singur destinatar.
 - **Multicast** – Transmiterea către un grup specific de dispozitive. Se folosesc adrese speciale din clasa D (224.0.0.0 – 239.255.255.255).
@@ -210,7 +210,7 @@ Adresele IP pot fi clasificate în mai multe clase, în funcție de valoarea pri
 
 ---
 
-### Adrese speciale IPv4
+## Adrese speciale IPv4
 
 - **Adrese multicast**: utilizate pentru trimiterea pachetelor către mai mulți destinatari (grupuri).
 - **Adresa 0.0.0.0** ("orice rețea"): utilizată de obicei în procesele de boot sau pentru ascultarea pe toate interfețele.
@@ -225,7 +225,7 @@ Adresele IP pot fi clasificate în mai multe clase, în funcție de valoarea pri
 
 ---
 
-### Exemplu de calcul pentru o rețea
+## Exemplu de calcul pentru o rețea
 
 - Adresă IP: 153.112.34.22
 - Clasa: B ⇒ Masca: 255.255.0.0
@@ -235,7 +235,7 @@ Adresele IP pot fi clasificate în mai multe clase, în funcție de valoarea pri
 
 ---
 
-### Masca de rețea – rol și utilizare
+## Masca de rețea – rol și utilizare
 
 Masca de rețea este un număr binar care permite separarea părții de rețea de partea de host dintr-o adresă IP.
 
@@ -248,11 +248,11 @@ Se aplică un AND binar între adresa IP și masca de rețea pentru a obține ad
 
 Masca este esențială pentru determinarea corectă a topologiei rețelei și pentru rutare.
 
-### CIDR și Subnetting
+## CIDR și Subnetting
 
 CIDR (Classless Inter-Domain Routing) este un sistem de alocare a adreselor IP care nu mai ține cont de clasele tradiționale (A, B, C). CIDR a fost introdus pentru a îmbunătăți utilizarea spațiului de adrese și pentru a simplifica rutarea.
 
-#### Caracteristici CIDR:
+## Caracteristici CIDR:
 
 - Alocare a adreselor de IP fără clase.
 - Masca de rețea nu se mai deduce din primii biți ai adresei IP, ci trebuie specificată explicit.
@@ -260,22 +260,22 @@ CIDR (Classless Inter-Domain Routing) este un sistem de alocare a adreselor IP c
 
 ---
 
-### Subnetting
+## Subnetting
 
 Subnetting-ul presupune împărțirea unei rețele IP într-o serie de subrețele mai mici. Acest proces este util pentru organizarea și gestionarea eficientă a adreselor IP în rețele mari.
 
-#### Motivații pentru subnetting:
+## Motivații pentru subnetting:
 
 - Separarea traficului intern.
 - Alocare eficientă a spațiului de adresare.
 - Posibilitatea de a crea subrețele independente în cadrul unei rețele mai mari.
 
-#### Tipuri de subnetting:
+## Tipuri de subnetting:
 
 - **Cu mască fixă** – toate subrețelele au aceeași dimensiune.
 - **Cu mască variabilă (VLSM)** – dimensiunea subrețelelor poate varia în funcție de nevoi.
 
-#### Întrebări utile înainte de subnetting:
+## Întrebări utile înainte de subnetting:
 
 - Este blocul de adrese suficient pentru nevoi?
 - Este necesară o mască variabilă?
@@ -284,13 +284,13 @@ Subnetting-ul presupune împărțirea unei rețele IP într-o serie de subrețel
 
 ---
 
-### Exemplu de subnetting:
+## Exemplu de subnetting:
 
 Să presupunem că avem rețeaua 192.168.23.0/24 și dorim să o împărțim în 4 subrețele egale, fiecare cu câte 30 de hosturi utilizabile. Vom extinde masca de rețea de la /24 la /26 (2 biți suplimentari pentru rețea).
 
 Masca binară devine: 11111111.11111111.11111111.11000000 → echivalent cu 255.255.255.192
 
-### Ce înseamnă `/24`?
+## Ce înseamnă `/24`?
 
 Notația `/24` este o formă prescurtată de a scrie **masca de rețea** în format CIDR (Classless Inter-Domain Routing).
 
@@ -305,7 +305,7 @@ Astfel, în rețeaua `192.168.23.0/24`:
 
 ---
 
-### De ce trecem la `/26`?
+## De ce trecem la `/26`?
 
 Vrem să împărțim rețeaua `/24` în **4 subrețele egale**. Pentru asta avem nevoie de **2 biți** suplimentari pentru a diferenția între 4 subrețele:
 
@@ -319,7 +319,7 @@ Noua mască de rețea:
 
 ---
 
-### Câte adrese avem per subrețea?
+## Câte adrese avem per subrețea?
 
 Cu o mască /26 avem 6 biți rămași pentru hosturi (32 biți - 26 biți = 6 biți):
 
@@ -328,27 +328,27 @@ Cu o mască /26 avem 6 biți rămași pentru hosturi (32 biți - 26 biți = 6 bi
 
 ---
 
-### Calculul subrețelelor
+## Calculul subrețelelor
 
-#### Subrețeaua A
+## Subrețeaua A
 
 - Adresă de rețea: `192.168.23.0` (toți biții host = 0)
 - Broadcast: `192.168.23.63` (toți biții host = 1) - mai avem 6 biti disponibili pe /26
 - Hosturi: `192.168.23.1` – `192.168.23.62`
 
-#### Subrețeaua B
+## Subrețeaua B
 
 - Adresă de rețea: `192.168.23.64` (următoarea după 63)
 - Broadcast: `192.168.23.127`
 - Hosturi: `192.168.23.65` – `192.168.23.126`
 
-#### Subrețeaua C
+## Subrețeaua C
 
 - Adresă de rețea: `192.168.23.128`
 - Broadcast: `192.168.23.191`
 - Hosturi: `192.168.23.129` – `192.168.23.190`
 
-#### Subrețeaua D
+## Subrețeaua D
 
 - Adresă de rețea: `192.168.23.192`
 - Broadcast: `192.168.23.255`
@@ -356,24 +356,24 @@ Cu o mască /26 avem 6 biți rămași pentru hosturi (32 biți - 26 biți = 6 bi
 
 ---
 
-### Observații finale
+## Observații finale
 
 - Ultima adresă din fiecare subrețea este adresa de broadcast.
 - Prima adresă este adresa de rețea (nereutilizabilă).
 - Primele 2 subrețele folosesc biții adăugați (din cei 2 extinși) ca 00 și 01, iar următoarele 10 și 11 (binare).
 - Subnettingul eficient reduce irosirea spațiului de adrese și optimizează tabelele de rutare în rețele mari sau distribuite.
 
-### VLSM (Variable Length Subnet Masking)
+## VLSM (Variable Length Subnet Masking)
 
 VLSM permite alocarea de adrese IP în mod flexibil, folosind măști de subrețea de lungime variabilă. Această tehnică este extrem de utilă în rețelele unde subrețelele nu au dimensiuni egale, oferind o utilizare mai eficientă a spațiului de adresare disponibil.
 
-#### Avantaje VLSM
+## Avantaje VLSM
 
 - Permite alocarea progresivă a biților de subrețea.
 - Permite optimizarea resurselor atunci când subrețelele au dimensiuni diferite.
 - Fără VLSM, ar trebui să folosim o mască fixă pentru toate subrețelele, ceea ce duce la risipă.
 
-#### Exercițiu VLSM
+## Exercițiu VLSM
 
 **Rețeaua: 193.226.3.0/24**
 
@@ -386,7 +386,7 @@ Avem nevoie să împărțim această rețea în 6 subrețele cu următoarele cer
 
 Vom aloca mai întâi subrețeaua cu cele mai multe hosturi (A), apoi în ordine descrescătoare.
 
-##### Subrețeaua A (50 hosts)
+### Subrețeaua A (50 hosts)
 
 - Avem nevoie de 6 biți pentru partea de host: 2^6 = 64 (din care 62 utilizabili)
 - Masca: /26 (255.255.255.192)
@@ -394,7 +394,7 @@ Vom aloca mai întâi subrețeaua cu cele mai multe hosturi (A), apoi în ordine
 - Broadcast: 193.226.3.63
 - Hosts: 193.226.3.1 la 193.226.3.62
 
-##### Subrețeaua B (24 hosts)
+### Subrețeaua B (24 hosts)
 
 - 5 biți pentru partea de host: 2^5 = 32 (30 utilizabili)
 - Masca: /27 (255.255.255.224)
@@ -402,7 +402,7 @@ Vom aloca mai întâi subrețeaua cu cele mai multe hosturi (A), apoi în ordine
 - Broadcast: 193.226.3.95
 - Hosts: 193.226.3.65 la 193.226.3.94
 
-##### Subrețeaua C (8 hosts)
+### Subrețeaua C (8 hosts)
 
 - 4 biți pentru partea de host: 2^4 = 16 (14 utilizabili)
 - Masca: /28 (255.255.255.240)
@@ -410,7 +410,7 @@ Vom aloca mai întâi subrețeaua cu cele mai multe hosturi (A), apoi în ordine
 - Broadcast: 193.226.3.111
 - Hosts: 193.226.3.97 la 193.226.3.110
 
-##### Subrețeaua D (2 hosts)
+### Subrețeaua D (2 hosts)
 
 - 2 biți pentru partea de host: 2^2 = 4 (2 utilizabili)
 - Masca: /30 (255.255.255.252)
@@ -418,29 +418,29 @@ Vom aloca mai întâi subrețeaua cu cele mai multe hosturi (A), apoi în ordine
 - Broadcast: 193.226.3.115
 - Hosts: 193.226.3.113 la 193.226.3.114
 
-##### Subrețeaua E (2 hosts)
+### Subrețeaua E (2 hosts)
 
 - Masca: /30
 - Rețea: 193.226.3.116/30
 - Broadcast: 193.226.3.119
 - Hosts: 193.226.3.117 la 193.226.3.118
 
-##### Subrețeaua F (2 hosts)
+### Subrețeaua F (2 hosts)
 
 - Masca: /30
 - Rețea: 193.226.3.120/30
 - Broadcast: 193.226.3.123
 - Hosts: 193.226.3.121 la 193.226.3.122
 
-#### Concluzii
+## Concluzii
 
 - VLSM permite să folosim doar atâția biți cât avem nevoie pentru fiecare subrețea.
 - În loc să rezervăm un spațiu de 64 de adrese pentru toate subrețelele (dacă am folosi mască fixă /26), folosim măști variate: /26, /27, /28, /30.
 - Prin utilizarea VLSM se optimizează utilizarea spațiului de adresare, evitând risipa de adrese IP.
 
-## Calcul de subrețele
+# Calcul de subrețele
 
-### Identificare host rețelei, broadcastului și a hosturilor
+## Identificare host rețelei, broadcastului și a hosturilor
 
 - Adresa IP: 192.168.1.130
 
